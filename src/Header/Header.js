@@ -5,9 +5,11 @@ import './Header.css';
 
 const styles = {
   header: {
-    height: '100px',
     textAlign: 'center',
     backgroundColor: 'orange',
+  },
+  text: {
+    padding: '20px',
   },
   link: {
     textDecoration: 'none',
@@ -19,8 +21,8 @@ class Header extends Component {
     return (
       <div className='Header'>
         <Link to='/' style={styles.link}>
-          <Paper position="static" color="default">
-            <Typography variant="h2" align="center" style={styles.header}>Dinner Planner</Typography>
+          <Paper position="static" color="default" style={styles.header}>
+            <Typography variant="h2" style={styles.text}>Dinner Planner</Typography>
           </Paper>
         </Link>
       </div>
