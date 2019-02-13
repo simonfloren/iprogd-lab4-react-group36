@@ -1,17 +1,33 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
-import './Welcome.css';
+import { Typography, Grid } from '@material-ui/core';
 
+const styles = {
+  root: {
+    align: 'center',
+    heigth: '100%',
+    backgrundColor: 'green',
+  }
+};
 class Welcome extends Component {
   render() {
     return (
-      <div className='Welcome'>
-        <p>Welcome to the dinner planner React Startup code!</p>
+      <div className={styles.root}>
+        <Grid container justify='center' alignItems='center' direction='column'>
+          <Typography>
+            This is the awesome, new, cool, interactive way to plan and order your dinner menu.
+          </Typography>
 
-        <Link to='/search'>
-          <button>Start planning</button>
-        </Link>
-      </div>
+          <Typography>
+            Press the button below to begin.
+          </Typography>
+
+          <Link to='/search'>
+            <button>Start planning</button>
+          </Link>
+        </Grid>
+
+      </div >
     );
   }
 }

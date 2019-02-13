@@ -1,8 +1,8 @@
-import React, { Component } from "react";
+import React, { Component } from 'react';
 // Alternative to passing the moderl as the component property,
 // we can import the model instance directly
-import modelInstance from "../data/DinnerModel";
-import "./Dishes.css";
+import modelInstance from '../data/DinnerModel';
+import './Dishes.css';
 
 class Dishes extends Component {
   constructor(props) {
@@ -10,7 +10,7 @@ class Dishes extends Component {
     // We create the state to store the various statuses
     // e.g. API data loading or error
     this.state = {
-      status: "LOADING"
+      status: 'LOADING'
     };
   }
 
@@ -24,13 +24,13 @@ class Dishes extends Component {
       .getAllDishes()
       .then(dishes => {
         this.setState({
-          status: "LOADED",
+          status: 'LOADED',
           dishes: dishes.results
         });
       })
       .catch(() => {
         this.setState({
-          status: "ERROR"
+          status: 'ERROR'
         });
       });
   }
@@ -42,21 +42,21 @@ class Dishes extends Component {
     // useful message to the user or show the list
     // of returned dishes
     switch (this.state.status) {
-      case "LOADING":
-        dishesList = <em>Loading...</em>;
-        break;
-      case "LOADED":
-        dishesList = this.state.dishes.map(dish => (
-          <li key={dish.id}>{dish.title}</li>
-        ));
-        break;
-      default:
-        dishesList = <b>Failed to load data, please try again</b>;
-        break;
+    case 'LOADING':
+      dishesList = <em>Loading...</em>;
+      break;
+    case 'LOADED':
+      dishesList = this.state.dishes.map(dish => (
+        <li key={dish.id}>{dish.title}</li>
+      ));
+      break;
+    default:
+      dishesList = <b>Failed to load data, please try again</b>;
+      break;
     }
 
     return (
-      <div className="Dishes">
+      <div className='Dishes'>
         <h3>Dishes</h3>
         <ul>{dishesList}</ul>
       </div>
