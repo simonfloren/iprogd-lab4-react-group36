@@ -3,6 +3,7 @@ import { Route } from 'react-router-dom';
 import Welcome from './Welcome/Welcome';
 import modelInstance from './data/DinnerModel';
 import SelectDish from './SelectDish/SelectDish';
+import Header from './Header/Header';
 import './App.css';
 
 class App extends Component {
@@ -16,9 +17,8 @@ class App extends Component {
   render() {
     return (
       <div className="App">
+        <Header />
         <header className="App-header">
-          <h1 className="App-title">{this.state.title}</h1>
-
           {/* We rended diffrent component based on the path */}
           <Route exact path='/' component={Welcome} />
           <Route
