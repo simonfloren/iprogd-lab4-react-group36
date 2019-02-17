@@ -5,6 +5,7 @@ import modelInstance from './data/DinnerModel';
 import SelectDish from './SelectDish/SelectDish';
 import Header from './Header/Header';
 import './App.css';
+import DishItem from './DishItem/DishItem';
 
 class App extends Component {
   constructor(props) {
@@ -18,6 +19,7 @@ class App extends Component {
     return (
       <div className="App">
         <Header />
+        <DishItem></DishItem>
         <header className="App-header">
           {/* We rended diffrent component based on the path */}
           <Route exact path='/' component={Welcome} />
