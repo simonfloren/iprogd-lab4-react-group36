@@ -1,0 +1,7 @@
+.Card {
+  max-width: 345px;
+}
+
+.DishItem {
+  object-fit: cover;
+}
