@@ -20,7 +20,8 @@ class DishItem extends Component {
             />
 
             <CardContent>
-              <Typography>
+              <Typography
+                align="center">
                 "Dish name"
               </Typography>
             </CardContent>
