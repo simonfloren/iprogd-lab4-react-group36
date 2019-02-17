@@ -8,7 +8,7 @@ const styles = {
     root: {}
 };
 
-class Printout extends Component {
+class Details extends Component {
     constructor(props) {
         super(props);
 
@@ -90,3 +90,5 @@ class Printout extends Component {
         ); 
     }
 }
+
+export default Details;

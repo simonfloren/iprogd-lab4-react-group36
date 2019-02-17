@@ -1,11 +1,6 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
 
-const styles = {
-    root: {}
-};
-
-class Printout extends Component {
+class SecondHeader extends Component {
     constructor(props) {
         super(props);
 
@@ -42,4 +37,4 @@ class Printout extends Component {
     }
 }
 
-export default Printout;
+export default SecondHeader;
