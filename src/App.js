@@ -19,7 +19,6 @@ class App extends Component {
     return (
       <div className="App">
         <Header />
-        <DishItem></DishItem>
         <header className="App-header">
           {/* We rended diffrent component based on the path */}
           <Route exact path='/' component={Welcome} />
