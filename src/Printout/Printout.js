@@ -54,7 +54,7 @@ class Printout extends Component {
                     ))}
                 </Grid>
             </div>
-        ); 
+        );
     }
 }
 
