@@ -62,7 +62,8 @@ class DinnerModel extends ObservableModel {
   addDish(id) {
     console.log("[dinnerModel] Added to menu, id:", id);
 
-    if (this._menu.some(menuItem => menuItem.id == id)) {
+    // ==?
+    if (this._menu.some(menuItem => menuItem.id === id)) {
       console.log("Dish already in menu");
       return;
     }
@@ -79,7 +80,8 @@ class DinnerModel extends ObservableModel {
    */
   removeDish(id) {
     this._menu = this._menu.filter(function(currentDish) {
-      return currentDish.id != id;
+      // !=?
+      return currentDish.id !== id;
     });
   }
 

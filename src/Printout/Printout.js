@@ -10,7 +10,8 @@ class Printout extends Component {
         super(props);
 
         this.state = {
-            numberOfGuests: this.props.model.getNumberOfGuests()
+            numberOfGuests: this.props.model.getNumberOfGuests(),
+            menu: this.props.model.getMenu()
         };
     }
 
@@ -31,8 +32,8 @@ class Printout extends Component {
     }
 
     render() {
-        let guests = this.state.numberOfGuests();
-        let menu = this.state.getFullMenu();
+        let guests = this.state.numberOfGuests;
+        let menu = this.state.menu;
         return (
             <div>
                 <Grid container>

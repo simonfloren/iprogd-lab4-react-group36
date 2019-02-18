@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Paper, Toolbar, Typography, Grid } from '@material-ui/core';
+import { Paper, Typography } from '@material-ui/core';
 import { Link } from 'react-router-dom';
 import './Header.css';
 
