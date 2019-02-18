@@ -51,7 +51,7 @@ class Sidebar extends Component {
       <Grid container className="Sidebar">
 
         {/* Sidebar header */}
-        <Grid item xs={4} container spacing={8}>
+        <Grid item container spacing={8}>
           <Grid item xs={12}>
             <Typography variant="h5">My Dinner</Typography>
           </Grid>

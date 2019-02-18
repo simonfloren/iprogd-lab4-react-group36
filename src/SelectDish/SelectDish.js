@@ -1,25 +1,20 @@
 import React, { Component } from 'react';
 import Sidebar from '../Sidebar/Sidebar';
 import Dishes from '../Dishes/Dishes';
+import { Grid, Typography } from '@material-ui/core';
 import './SelectDish.css';
 
 class SelectDish extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      status: 'LOADING',
-    };
-  }
-
   render() {
     return (
-      <div className='SelectDish'>
-        <h2>This is the Select Dish screen</h2>
-
-        {/* We pass the model as property to the Sidebar component */}
-        <Sidebar model={this.props.model} />
-        <Dishes />
-      </div>
+      <Grid container direction="row" className='SelectDish'>
+        <Grid item xs={2}>
+          <Sidebar model={this.props.model} />
+        </Grid>
+        <Grid item xs={10} container>
+          <Dishes />
+        </Grid>
+      </Grid>
     );
   }
 }

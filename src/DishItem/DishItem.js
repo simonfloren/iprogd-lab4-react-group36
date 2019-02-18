@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import PropTypes, { Card, CardActionArea, CardMedia, CardContent, Typography } from '@material-ui/core';
+import { Card, CardActionArea, CardMedia, CardContent, Typography } from '@material-ui/core';
 import './DishItem.css';
 
 class DishItem extends Component {

@@ -48,6 +48,13 @@ class DinnerModel extends ObservableModel {
   }
 
   /**
+   * Get dish types 
+   */
+  getDishTypes() {
+    return this._types;
+  }
+
+  /**
    * Add dish to menu stored in model
    *
    * @param {number} id
@@ -83,13 +90,6 @@ class DinnerModel extends ObservableModel {
     return this._menu;
   }
 
-  /**
-   *
-   */
-  getDishTypes() {
-    return this._types;
-  }
-
   // API methods
 
   /**
@@ -97,6 +97,9 @@ class DinnerModel extends ObservableModel {
    * @returns {Promise<any>}
    */
 	getAllDishes(type, filter) {
+    if(typeof filter === 'undefined') {
+      filter = "";
+    }
 		const params = {
 			number: 12,
 			includeIngredients: filter.split(' ').join(',')
