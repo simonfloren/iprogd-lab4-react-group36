@@ -32,10 +32,25 @@ class Printout extends Component {
 
     render() {
         let guests = this.state.numberOfGuests();
+        let menu = this.state.getFullMenu();
         return (
             <div>
                 <Grid container>
-                
+                    {menu.forEach(dish => (
+                        <Grid direction="row">
+                            <Grid>
+                                <image src={dish.image}></image>
+                            </Grid>
+                            <Grid>
+                                <Typography>{dish.title}</Typography>
+                                <Typography>Lorem impsum</Typography>
+                            </Grid>
+                            <Grid>
+                                <Typography>Preparation</Typography>
+                                <Typography>{dish.instructions}</Typography>
+                            </Grid>
+                        </Grid>
+                    ))}
                 </Grid>
             </div>
         ); 

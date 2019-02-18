@@ -1,4 +1,6 @@
 import React, { Component } from 'react';
+import { Typography, Divider, Grid } from '@material-ui/core';
+import { Link } from 'react-router-dom';
 
 class SecondHeader extends Component {
     constructor(props) {
@@ -30,7 +32,15 @@ class SecondHeader extends Component {
         return (
             <div>
                 <Grid container>
-                
+                    <Grid>
+                        <Typography>My dinner: {guests} people</Typography>
+                    </Grid>
+                    <Grid>
+                        <Link to='/search'>
+                            <button>Go back and edit dinner</button>
+                        </Link>
+                    </Grid>
+                    <Divider/>
                 </Grid>
             </div>
         ); 
