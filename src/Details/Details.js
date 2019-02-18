@@ -78,7 +78,7 @@ class Details extends Component {
                         </CardContent>
                     </Card>
                     <Typography>{this.state.name}</Typography>
-                    <image src={this.state.image}></image>
+                    <img src={this.state.image}></img>
                     <Typography>lorem ipsum</Typography>
                     <Link to='/search'>
                         <button>Back to search</button>

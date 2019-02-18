@@ -34,19 +34,20 @@ class Printout extends Component {
     render() {
         let guests = this.state.numberOfGuests;
         let menu = this.state.menu;
+        console.log(menu);
         return (
             <div>
                 <Grid container direction='column'>
-                    {menu.forEach(dish => (
-                        <Grid container direction="row">
-                            <Grid>
-                                <image src={dish.image}></image>
+                    {menu.map(dish => (
+                        <Grid container spacing={24}>
+                            <Grid item xs>
+                                <img src={dish.image}></img>
                             </Grid>
-                            <Grid>
+                            <Grid item xs>
                                 <Typography>{dish.title}</Typography>
                                 <Typography>Lorem impsum</Typography>
                             </Grid>
-                            <Grid>
+                            <Grid item xs>
                                 <Typography>Preparation</Typography>
                                 <Typography>{dish.instructions}</Typography>
                             </Grid>
