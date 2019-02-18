@@ -95,17 +95,45 @@ class DinnerModel extends ObservableModel {
    * Do an API call to the search API endpoint.
    * @returns {Promise<any>}
    */
-  getAllDishes() {
-    const url = `${BASE_URL}/recipes/search`;
-    return fetch(url, httpOptions).then(this.processResponse);
-  }
+	getAllDishes(type, filter) {
+		const params = {
+			number: 12,
+			includeIngredients: filter.split(' ').join(',')
+		};
+
+		if(type !== 'all') {
+			params['type'] = type;
+		}
+
+		console.log("[getAllDishes] Searching for dishes with query: ", params);
+		const url = BASE_URL + '/recipes/searchComplex?' + this.serialize(params);
+
+		return fetch(url, httpOptions)
+			.then(response => response.json())
+			.then(data => data.results);
+	}
+
+  /**
+	 * Returns an array of dishes and their info given their id's
+	 * @param {Array Num} ids 
+	 */
+	getDishes(ids) {
+		const idstring = encodeURIComponent(ids.join(","));
+		const url = BASE_URL + "/recipes/informationBulk?ids=" + idstring;
+
+		return fetch(url, httpOptions)
+			.then(resp => resp.json())
+			.then(data => data);
+	}
 
   /**
    * API call to retrieve info about a certain dish
    *
    * @param {number} id
    */
-  getDish(id) {}
+  getDish(id) {
+    return this.getDishes([id]).then(dishes => dishes[0]);
+  }
 
   processResponse(response) {
     if (response.ok) {
@@ -117,13 +145,7 @@ class DinnerModel extends ObservableModel {
   getRandomDishes() {
     const url = BASE_URL + "/recipes/random?number=" + 12;
 
-    return fetch(url, /* {
-      method: "GET",
-      headers: {
-        "X-Mashape-Key": API_KEY,
-        Accept: "application/json"
-      }
-    } */httpOptions)
+    return fetch(url, httpOptions)
       .then(response => response.json())
       .then(data => data.recipes);
   }
