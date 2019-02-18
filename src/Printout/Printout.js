@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
+import { Typography, Grid } from '@material-ui/core';
 
 const styles = {
     root: {}
