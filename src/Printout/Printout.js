@@ -36,9 +36,9 @@ class Printout extends Component {
         let menu = this.state.menu;
         return (
             <div>
-                <Grid container>
+                <Grid container direction='column'>
                     {menu.forEach(dish => (
-                        <Grid direction="row">
+                        <Grid container direction="row">
                             <Grid>
                                 <image src={dish.image}></image>
                             </Grid>

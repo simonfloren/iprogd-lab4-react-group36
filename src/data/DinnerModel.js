@@ -1,7 +1,7 @@
 import ObservableModel from "./ObservableModel";
 import API_KEY from "./api";
 
-const BASE_URL = "http://sunset.nada.kth.se:8080/iprog/group/36/recipes/search";
+const BASE_URL = "http://sunset.nada.kth.se:8080/iprog/group/36";
 const httpOptions = {
   headers: {
     "X-Mashape-Key": API_KEY
