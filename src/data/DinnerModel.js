@@ -19,6 +19,7 @@ class DinnerModel extends ObservableModel {
       document.cookie = 'guests=1';
     }
     else {
+      // Remove \ before = ?
       this._numberOfGuests = Number.parseInt(document.cookie.replace(/(?:(?:^|.*;\s*)guests\s*\=\s*([^;]*).*$)|^.*$/, "$1"), 10);
     }
 
