@@ -13,7 +13,7 @@ class DinnerModel extends ObservableModel {
     super();
 
     this._numberOfGuests;
-    if (document.cookie.indexOf('samplename') == -1 ) {
+    if (document.cookie.indexOf('guests') == -1 ) {
       // Cookie does not exist, set to default 1
       this._numberOfGuests = 1;
       document.cookie = 'guests=1';
@@ -86,7 +86,6 @@ class DinnerModel extends ObservableModel {
 
   /**
    * Add dish to menu stored in model
-   *
    * @param {number} id
    */
   addDish(id) {
@@ -105,7 +104,7 @@ class DinnerModel extends ObservableModel {
   }
 
   /**
-   *
+   * Removes dish from menu
    * @param {number} id
    */
   removeDish(id) {
@@ -116,7 +115,7 @@ class DinnerModel extends ObservableModel {
   }
 
   /**
-   *
+   * Returns the current menu items
    */
   getMenu() {
     return this._menu;

@@ -1,36 +1,38 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
-import { Typography, Grid } from '@material-ui/core';
+import { Typography, Grid, Button } from '@material-ui/core';
 
 const styles = {
   root: {
-    align: 'center',
-    heigth: '100%',
+    width: '100%',
     backgrundColor: 'green',
+  },
+  link: {
+    textDecoration: 'none',
   }
 };
+
 class Welcome extends Component {
   render() {
     return (
-      <div className={styles.root}>
-        <Grid container justify='center' alignItems='center' direction='column'>
-          <Typography>
-            This is the awesome, new, cool, interactive way to plan and order your dinner menu.
-          </Typography>
+      <Grid container justify="center" direction="column" style={styles.root} alignContent="center" alignItems="center">
 
-          <Typography>
-            Press the button below to begin.
-          </Typography>
+        <Typography align="center">
+          This is the awesome, new, cool, interactive way to plan and order your dinner menu.
+        </Typography>
 
-          <Link to='/search'>
-            <button>Start planning</button>
-          </Link>
-          <Link to='/details'>
-            <button>Remove later</button>
-          </Link>
-        </Grid>
+        <Typography align="center">
+          Press the button below to begin.
+        </Typography>
 
-      </div >
+        <Link to='/search' style={styles.link}>
+          <Button
+            variant="contained"
+            size="large"
+            color="primary"
+          >Start planning</Button>
+        </Link>
+      </Grid>
     );
   }
 }

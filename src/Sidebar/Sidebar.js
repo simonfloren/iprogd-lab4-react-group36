@@ -83,7 +83,7 @@ class Sidebar extends Component {
             <Grid item container spacing={8}>
               {this.state.menu.map((dish) => {
                 return (
-                  <Grid item xs={12}>
+                  <Grid item xs={12} key={dish.id}>
                     <Paper>
                       <div className="SidebarItem">
                         <Grid container direction="row" justify="space-between">

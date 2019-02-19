@@ -21,22 +21,20 @@ class App extends Component {
     return (
       <div className="App">
         <Header />
-        <header className="App-header">
-          {/* We rended diffrent component based on the path */}
-          <Route exact path='/' component={Welcome} />
-          <Route
-            path='/search'
-            render={() => <SelectDish model={modelInstance} />}
-          />
-          <Route
-            path='/printout'
-            render={() => <Printout model={modelInstance} />}
-          />
-          <Route
-            path='/details'
-            render={() => <DishDetails model={modelInstance} />}
-          />
-        </header>
+        {/* We rended diffrent component based on the path */}
+        <Route exact path='/' component={Welcome} />
+        <Route
+          path='/search'
+          render={() => <SelectDish model={modelInstance} />}
+        />
+        <Route
+          path='/printout'
+          render={() => <Printout model={modelInstance} />}
+        />
+        <Route
+          path='/details'
+          render={() => <DishDetails model={modelInstance} />}
+        />
       </div>
     );
   }

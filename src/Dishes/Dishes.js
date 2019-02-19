@@ -1,7 +1,9 @@
 import React, { Component } from 'react';
 import modelInstance from '../data/DinnerModel';
 import DishItem from '../DishItem/DishItem';
-import { Grid, Typography, TextField, MenuItem, Paper, Divider } from '@material-ui/core';
+import {
+  Grid, Typography, TextField, MenuItem, Paper
+ } from '@material-ui/core';
 import './Dishes.css';
 
 class Dishes extends Component {
@@ -21,8 +23,8 @@ class Dishes extends Component {
   }
 
   updateSearch() {
-    console.log("Updaitng piss");
     const { selectedType, inputKeywords } = this.state;
+    console.log("Search query", selectedType, inputKeywords);
     modelInstance.getAllDishes(selectedType, inputKeywords).then(dishes => {
       this.setState({
         status: 'LOADED',
@@ -36,18 +38,9 @@ class Dishes extends Component {
     });
   }
 
-  handleKeywordChange(e) {
-    this.setState({ inputKeywords: e.target.value});
-    this.updateSearch();
-  }
-  
-
-
   render() {
     let dishesList = null;
     const { types, selectedType, dishes, status } = this.state;
-
-    console.log(dishes);
 
     switch (status) {
       case 'LOADING':
@@ -56,7 +49,7 @@ class Dishes extends Component {
       case 'LOADED':
         dishesList = dishes.map(dish => (
           <Grid item>
-            <DishItem dish={dish} />
+            <DishItem dish={dish} modelInstance={modelInstance} />
           </Grid>
         ));
         break;
@@ -81,9 +74,12 @@ class Dishes extends Component {
                 type="search"
                 margin="normal"
                 variant="outlined"
+                onChange={(e) => {
+                  this.setState({ inputKeywords: e.target.value });
+                }}
                 onKeyDown={(e) => {
                   if(e.keyCode == 13) {
-                    this.handleKeywordChange(e);
+                    this.updateSearch();
                   }
                 }}
                 fullWidth
@@ -95,6 +91,9 @@ class Dishes extends Component {
                 select
                 label="Dish type"
                 value={selectedType}
+                onChange={(e) => {
+                  this.setState({ selectedType: e.target.value });
+                }}
                 margin="normal"
                 variant="outlined"
                 fullWidth
