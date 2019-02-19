@@ -10,7 +10,10 @@ function DishItem(props) {
     <div>
       <Card className="Card">
         <Link to="/details">
-          <CardActionArea>
+          <CardActionArea onClick={() => {
+                console.log("Pressed dish", dish.id);
+                modelInstance.setDetailedDish(dish.id);
+              }}>
             <CardMedia
               component="img"
               alt="dish image"
@@ -18,18 +21,11 @@ function DishItem(props) {
               height="150"
               image={dish.image}
               title={dish.title}
-              onClick={() => {
-                console.log("Pressed dish", dish.id);
-                modelInstance.setDetailedDish(dish.id);
-              }}
             />
 
             <CardContent>
               <Typography
                 align="center"
-                onClick={() => {
-                  modelInstance.setDetailedDish(dish.id);
-                }}
               >
                 {dish.title}
               </Typography>
