@@ -15,6 +15,7 @@ class Details extends Component {
         //let dish = this.props.model.getDish(this.props.id);
 
         this.state = {
+            dishId: this.props.model.getDetailedDish(),
             numberOfGuests: this.props.model.getNumberOfGuests()/* ,
             image: dish.image,
             name: dish.title,

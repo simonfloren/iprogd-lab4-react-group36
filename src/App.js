@@ -34,7 +34,7 @@ class App extends Component {
           />
           <Route
             path='/details'
-            render={() => <Details model={modelInstance} />}
+            render={() => <DishDetails model={modelInstance} />}
           />
         </header>
       </div>

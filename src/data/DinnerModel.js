@@ -30,7 +30,7 @@ class DinnerModel extends ObservableModel {
     ];
 
     // Change to -1 later
-    this._dishDetail = -1;
+    this._dishDetail = 78;
   }
 
   /**

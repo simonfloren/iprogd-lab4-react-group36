@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Typography, Grid } from '@material-ui/core';
+import SecondHeader from '../SndHeader/SecondHeader';
 
 const styles = {
     root: {}
@@ -37,6 +38,9 @@ class Printout extends Component {
         console.log(menu);
         return (
             <div>
+                <Grid>
+                    <SecondHeader/>
+                </Grid>
                 <Grid container direction='column'>
                     {menu.map(dish => (
                         <Grid container spacing={24}>
