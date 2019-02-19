@@ -11,8 +11,16 @@ const httpOptions = {
 class DinnerModel extends ObservableModel {
   constructor() {
     super();
-    this._numberOfGuests = 1;
-    this.getNumberOfGuests();
+
+    this._numberOfGuests;
+    if (document.cookie.indexOf('samplename') == -1 ) {
+      // Cookie does not exist, set to default 1
+      this._numberOfGuests = 1;
+      document.cookie = 'guests=1';
+    }
+    else {
+      this._numberOfGuests = Number.parseInt(document.cookie.replace(/(?:(?:^|.*;\s*)guests\s*\=\s*([^;]*).*$)|^.*$/, "$1"), 10);
+    }
 
     this._menu = [];
     this._types = [
@@ -64,6 +72,7 @@ class DinnerModel extends ObservableModel {
   setNumberOfGuests(num) {
     if (num > 0) {
       this._numberOfGuests = num;
+      document.cookie = 'guests=' + num;
       this.notifyObservers();
     }
   }
