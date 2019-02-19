@@ -25,6 +25,9 @@ class Welcome extends Component {
           <Link to='/search'>
             <button>Start planning</button>
           </Link>
+          <Link to='/details'>
+            <button>Remove later</button>
+          </Link>
         </Grid>
 
       </div >

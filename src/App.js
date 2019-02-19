@@ -5,7 +5,9 @@ import modelInstance from './data/DinnerModel';
 import SelectDish from './SelectDish/SelectDish';
 import Header from './Header/Header';
 import './App.css';
-import DishItem from './DishItem/DishItem';
+//import DishItem from './DishItem/DishItem';
+import Printout from './Printout/Printout';
+import DishDetails from './DishDetails/DishDetails';
 
 class App extends Component {
   constructor(props) {
@@ -25,6 +27,14 @@ class App extends Component {
           <Route
             path='/search'
             render={() => <SelectDish model={modelInstance} />}
+          />
+          <Route
+            path='/printout'
+            render={() => <Printout model={modelInstance} />}
+          />
+          <Route
+            path='/details'
+            render={() => <DishDetails model={modelInstance} />}
           />
         </header>
       </div>

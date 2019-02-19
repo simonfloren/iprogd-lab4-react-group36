@@ -1,7 +1,7 @@
 import ObservableModel from "./ObservableModel";
-import API_KEY from "./api";
+import { API_KEY } from "./api";
 
-const BASE_URL = "http://sunset.nada.kth.se:8080/iprog/group/36/recipes";
+const BASE_URL = "http://sunset.nada.kth.se:8080/iprog/group/36";
 const httpOptions = {
   headers: {
     "X-Mashape-Key": API_KEY
@@ -29,6 +29,24 @@ class DinnerModel extends ObservableModel {
       "Sauce",
       "Drink"
     ];
+
+    // Change to -1 later
+    this._dishDetail = 97;
+  }
+
+  /**
+   * 
+   */
+  getDetailedDish() {
+    // if to make sure it is a correct id? i.e not -1
+    return this._dishDetail;
+  }
+
+  /**
+   * 
+   */
+  setDetailedDish(id) {
+    this._dishDetail = id;
   }
 
   /**
@@ -44,8 +62,10 @@ class DinnerModel extends ObservableModel {
    * @param {number} num
    */
   setNumberOfGuests(num) {
-    this._numberOfGuests = num;
-    this.notifyObservers();
+    if (num > 0) {
+      this._numberOfGuests = num;
+      this.notifyObservers();
+    }
   }
 
   /**
@@ -63,7 +83,8 @@ class DinnerModel extends ObservableModel {
   addDish(id) {
     console.log("[dinnerModel] Added to menu, id:", id);
 
-    if (this._menu.some(menuItem => menuItem.id == id)) {
+    // ==?
+    if (this._menu.some(menuItem => menuItem.id === id)) {
       console.log("Dish already in menu");
       return;
     }
@@ -80,7 +101,8 @@ class DinnerModel extends ObservableModel {
    */
   removeDish(id) {
     this._menu = this._menu.filter(function(currentDish) {
-      return currentDish.id != id;
+      // !=?
+      return currentDish.id !== id;
     });
   }
 

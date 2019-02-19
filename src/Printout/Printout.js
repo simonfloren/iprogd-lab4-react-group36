@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
+import { Typography, Grid } from '@material-ui/core';
+import SecondHeader from '../SndHeader/SecondHeader';
 
 const styles = {
     root: {}
@@ -10,7 +11,8 @@ class Printout extends Component {
         super(props);
 
         this.state = {
-            numberOfGuests: this.props.model.getNumberOfGuests()
+            numberOfGuests: this.props.model.getNumberOfGuests(),
+            menu: this.props.model.getMenu()
         };
     }
 
@@ -31,21 +33,25 @@ class Printout extends Component {
     }
 
     render() {
-        let guests = this.state.numberOfGuests();
-        let menu = this.state.getFullMenu();
+        let guests = this.state.numberOfGuests;
+        let menu = this.state.menu;
+        console.log(menu);
         return (
             <div>
-                <Grid container>
-                    {menu.forEach(dish => (
-                        <Grid direction="row">
-                            <Grid>
-                                <image src={dish.image}></image>
+                <Grid>
+                    <SecondHeader/>
+                </Grid>
+                <Grid container direction='column'>
+                    {menu.map(dish => (
+                        <Grid container spacing={24}>
+                            <Grid item xs>
+                                <img src={dish.image}></img>
                             </Grid>
-                            <Grid>
+                            <Grid item xs>
                                 <Typography>{dish.title}</Typography>
                                 <Typography>Lorem impsum</Typography>
                             </Grid>
-                            <Grid>
+                            <Grid item xs>
                                 <Typography>Preparation</Typography>
                                 <Typography>{dish.instructions}</Typography>
                             </Grid>
@@ -53,7 +59,7 @@ class Printout extends Component {
                     ))}
                 </Grid>
             </div>
-        ); 
+        );
     }
 }
 
