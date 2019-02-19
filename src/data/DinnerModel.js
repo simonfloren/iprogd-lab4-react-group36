@@ -133,7 +133,7 @@ class DinnerModel extends ObservableModel {
 		}
 
 		console.log("[getAllDishes] Searching for dishes with query: ", params);
-		const url = BASE_URL + '/searchComplex?' + this.serialize(params);
+		const url = BASE_URL + '/recipes/searchComplex?' + this.serialize(params);
 
 		return fetch(url, httpOptions)
 			.then(response => response.json())
@@ -146,7 +146,7 @@ class DinnerModel extends ObservableModel {
 	 */
 	getDishes(ids) {
 		const idstring = encodeURIComponent(ids.join(","));
-		const url = BASE_URL + "/informationBulk?ids=" + idstring;
+		const url = BASE_URL + "/recipes/informationBulk?ids=" + idstring;
 
 		return fetch(url, httpOptions)
 			.then(resp => resp.json())
@@ -170,7 +170,7 @@ class DinnerModel extends ObservableModel {
   }
 
   getRandomDishes() {
-    const url = BASE_URL + "/random?number=" + 15;
+    const url = BASE_URL + "/recipes/random?number=" + 15;
 
     return fetch(url, httpOptions)
       .then(response => response.json())
