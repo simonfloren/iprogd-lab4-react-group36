@@ -8,6 +8,7 @@ import './App.css';
 //import DishItem from './DishItem/DishItem';
 import Printout from './Printout/Printout';
 import DishDetails from './DishDetails/DishDetails';
+import MenuOverview from './MenuOverview/MenuOverview';
 
 class App extends Component {
   constructor(props) {
@@ -34,6 +35,10 @@ class App extends Component {
         <Route
           path='/details'
           render={() => <DishDetails model={modelInstance} />}
+        />
+        <Route
+          path='/menuoverview'
+          render={() => <MenuOverview model={modelInstance} />}
         />
       </div>
     );

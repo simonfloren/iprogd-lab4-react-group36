@@ -7,10 +7,10 @@ class DishDetails extends Component {
   render() {
     return (
       <Grid container direction="row" className='DishDetails'>
-        <Grid item xs={2}>
+        <Grid item xs={3}>
           <Sidebar model={this.props.model} />
         </Grid>
-        <Grid item xs={10} container>
+        <Grid item xs={9} container>
           <Details model={this.props.model}/>
         </Grid>
       </Grid>

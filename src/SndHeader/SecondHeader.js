@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Typography, Divider, Grid } from '@material-ui/core';
+import { Typography, Divider, Grid, Button } from '@material-ui/core';
 import { Link } from 'react-router-dom';
 
 class SecondHeader extends Component {
@@ -28,22 +28,26 @@ class SecondHeader extends Component {
     }
 
     render() {
-        let guests = this.state.numberOfGuests();
+        let guests = this.state.numberOfGuests;
         return (
-            <div>
-                <Grid container>
-                    <Grid>
-                        <Typography>My dinner: {guests} people</Typography>
+            <Grid container direction="row" justify="center">
+                <Grid item xs={6} container>
+                    <Grid item>
+                        <Typography variant="h6">My dinner: {guests} people</Typography>
                     </Grid>
-                    <Grid>
-                        <Link to='/search'>
-                            <button>Go back and edit dinner</button>
+                </Grid>
+                <Grid item xs={6} container justify="flex-end">
+                    <Grid item>
+                        <Link to="/search" style={{ textDecoration: 'none' }}>
+                            <Button
+                                color="primary"
+                                variant="contained"
+                                >Go back and edit dinner</Button>
                         </Link>
                     </Grid>
-                    <Divider/>
                 </Grid>
-            </div>
-        ); 
+            </Grid>
+        );
     }
 }
 

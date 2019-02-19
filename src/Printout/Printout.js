@@ -18,6 +18,7 @@ class Printout extends Component {
 
     componentDidMount() {
         this.props.model.addObserver(this);
+        this.update();
     }
 
     componentWillUnmount() {
@@ -28,20 +29,20 @@ class Printout extends Component {
         // This may be needed when we recalculate the ing. amount and price
         //let dish = this.props.model.getDish(this.props.id);
         this.setState({
-            numberOfGuests: this.props.model.getNumberOfGuests()
+            numberOfGuests: this.props.model.getNumberOfGuests(),
+            menu: this.props.model.getMenu()
         });
     }
 
     render() {
         let guests = this.state.numberOfGuests;
         let menu = this.state.menu;
-        console.log(menu);
         return (
             <div>
-                <Grid>
-                    <SecondHeader/>
+                <Grid container>
+                    <SecondHeader model={this.props.model}/>
                 </Grid>
-                <Grid container direction='column'>
+                <Grid container direction="column">
                     {menu.map(dish => (
                         <Grid container spacing={24}>
                             <Grid item xs>

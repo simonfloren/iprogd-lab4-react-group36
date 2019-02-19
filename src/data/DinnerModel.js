@@ -24,6 +24,21 @@ class DinnerModel extends ObservableModel {
     }
 
     this._menu = [];
+    if (document.cookie.indexOf('menu') == -1 ) {
+      // Cookie does not exist, set to default []
+      document.cookie = 'menu=[]';
+    }
+    else {
+      // Remove \ before = ?
+      const ids = JSON.parse(document.cookie.replace(/(?:(?:^|.*;\s*)menu\s*\=\s*([^;]*).*$)|^.*$/, "$1"));
+      if(ids.length > 0) {
+        this.getDishes(ids).then((dishes) => {
+          this._menu = dishes;
+          this.notifyObservers();
+        });
+      }
+    }
+
     this._types = [
       "All",
       "Main Course",
@@ -99,6 +114,9 @@ class DinnerModel extends ObservableModel {
 
     this.getDish(id).then(dish => {
       this._menu.push(dish);
+
+      const ids = this._menu.map(dish => dish.id).join(',');
+      document.cookie = 'menu=[' + ids + ']';
       this.notifyObservers("menu");
     });
   }
@@ -112,6 +130,9 @@ class DinnerModel extends ObservableModel {
       // !=?
       return currentDish.id !== id;
     });
+    const ids = this._menu.map(dish => dish.id).join(',');
+    document.cookie = 'menu=[' + ids + ']';
+    this.notifyObservers("menu");
   }
 
   /**
@@ -119,6 +140,22 @@ class DinnerModel extends ObservableModel {
    */
   getMenu() {
     return this._menu;
+  }
+
+  /**
+   * 
+   */
+  getMenuPrice() {
+    let totPrice = 0;
+    
+    if(typeof this._menu === 'undefined') {
+      return 0;
+    }
+
+    this._menu.forEach(dish => {
+      totPrice += dish.pricePerServing;
+    });
+    return totPrice.toFixed(2);
   }
 
   // API methods

@@ -1,5 +1,10 @@
 # Dinner Planner React
 
+Does not really work with Firefox or Internet Explorer.
+``` javascript
+onClick={ () => {} } // does not work
+```
+
 ## How to get started
 
 Since modern frameworks use some advanced features like compiling the templates and source code in pure
