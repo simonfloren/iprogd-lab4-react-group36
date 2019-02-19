@@ -28,6 +28,24 @@ class DinnerModel extends ObservableModel {
       "Sauce",
       "Drink"
     ];
+
+    // Change to -1 later
+    this._dishDetail = -1;
+  }
+
+  /**
+   * 
+   */
+  getDetailedDish() {
+    // if to make sure it is a correct id? i.e not -1
+    return this._dishDetail;
+  }
+
+  /**
+   * 
+   */
+  setDetailedDish(id) {
+    this._dishDetail = id;
   }
 
   /**
