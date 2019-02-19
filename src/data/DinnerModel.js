@@ -1,7 +1,7 @@
 import ObservableModel from "./ObservableModel";
 import API_KEY from "./api";
 
-const BASE_URL = "http://sunset.nada.kth.se:8080/iprog/group/36/recipes/search";
+const BASE_URL = "http://sunset.nada.kth.se:8080/iprog/group/36/recipes";
 const httpOptions = {
   headers: {
     "X-Mashape-Key": API_KEY
@@ -16,6 +16,7 @@ class DinnerModel extends ObservableModel {
 
     this._menu = [];
     this._types = [
+      "All",
       "Main Course",
       "Side Dish",
       "Dessert",
@@ -101,7 +102,7 @@ class DinnerModel extends ObservableModel {
       filter = "";
     }
 		const params = {
-			number: 12,
+			number: 15,
 			includeIngredients: filter.split(' ').join(',')
 		};
 
@@ -110,7 +111,7 @@ class DinnerModel extends ObservableModel {
 		}
 
 		console.log("[getAllDishes] Searching for dishes with query: ", params);
-		const url = BASE_URL + '/recipes/searchComplex?' + this.serialize(params);
+		const url = BASE_URL + '/searchComplex?' + this.serialize(params);
 
 		return fetch(url, httpOptions)
 			.then(response => response.json())
@@ -123,7 +124,7 @@ class DinnerModel extends ObservableModel {
 	 */
 	getDishes(ids) {
 		const idstring = encodeURIComponent(ids.join(","));
-		const url = BASE_URL + "/recipes/informationBulk?ids=" + idstring;
+		const url = BASE_URL + "/informationBulk?ids=" + idstring;
 
 		return fetch(url, httpOptions)
 			.then(resp => resp.json())
@@ -147,7 +148,7 @@ class DinnerModel extends ObservableModel {
   }
 
   getRandomDishes() {
-    const url = BASE_URL + "/recipes/random?number=" + 12;
+    const url = BASE_URL + "/random?number=" + 15;
 
     return fetch(url, httpOptions)
       .then(response => response.json())

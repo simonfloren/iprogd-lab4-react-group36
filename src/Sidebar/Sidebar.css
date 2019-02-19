@@ -1,5 +1,7 @@
 .Sidebar {
   background-color: beige;
+  padding: 10px;
+  margin-top: 5px;
 }
 
 .SidebarItem {

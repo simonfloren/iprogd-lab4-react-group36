@@ -4,7 +4,9 @@ import './DishItem.css';
 
 class DishItem extends Component {
   render() {
-    const { props, dish } = this.props;
+    const { dish } = this.props;
+
+    console.log("Rendering dish item", dish);
 
     return (
       <div>
@@ -14,15 +16,15 @@ class DishItem extends Component {
               component="img"
               alt="dish image"
               className="DishItem"
-              height="300"
-              image="https://png.pngtree.com/element_origin_min_pic/16/09/16/1557db9c33ec956.jpg"
-              title="Dish image"
+              height="150"
+              image={dish.image}
+              title={dish.title}
             />
 
             <CardContent>
               <Typography
                 align="center">
-                "Dish name"
+                {dish.title}
               </Typography>
             </CardContent>
           </CardActionArea>

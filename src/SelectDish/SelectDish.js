@@ -7,11 +7,11 @@ import './SelectDish.css';
 class SelectDish extends Component {
   render() {
     return (
-      <Grid container direction="row" className='SelectDish'>
-        <Grid item xs={2}>
+      <Grid container direction="row" spacing={8} className='SelectDish'>
+        <Grid item xs={12} md={3}>
           <Sidebar model={this.props.model} />
         </Grid>
-        <Grid item xs={10} container>
+        <Grid item xs={12} md={9} container>
           <Dishes />
         </Grid>
       </Grid>
