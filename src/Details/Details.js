@@ -11,7 +11,6 @@ import {
   CircularProgress
 } from "@material-ui/core";
 import { Table, TableBody } from "@material-ui/core";
-//import DinnerModel from '../data/DinnerModel'; is this in props?
 
 const styles = {
   root: {}
@@ -23,23 +22,18 @@ class Details extends Component {
 
     this.state = {
         dish: {},
-        numberOfGuests: this.props.model.getNumberOfGuests() /* ,
-        image: dish.image,
-        name: dish.title,
-        instr: dish.instructions,
-        ing: rows,
-        price: dish.pricePerServing */
+        numberOfGuests: this.props.model.getNumberOfGuests()
     };
-
-    // if we getdish here we can have a isloading boolean that the render uses
+    
     this.isLoading = true;
     this.error;
     this.props.model
-      .getDish(this.props.model.getDetailedDish)
+      .getDish(this.props.model.getDetailedDish())
       .then(dishDetailed => {
+        console.log(dishDetailed);
         this.isLoading = false;
         this.error = "";
-        this.stateSet({
+        this.setState({
           dish: dishDetailed,
           numberOfGuests: this.props.model.getNumberOfGuests()
         });
