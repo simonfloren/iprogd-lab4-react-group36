@@ -39,15 +39,14 @@ class DinnerModel extends ObservableModel {
       "Drink"
     ];
 
-    // Change to -1 later
-    this._dishDetail = 97;
+    this._dishDetail;
   }
 
   /**
    * 
    */
   getDetailedDish() {
-    // if to make sure it is a correct id? i.e not -1
+    // if to make sure it is a correct id? i.e not undefined
     return this._dishDetail;
   }
 
