@@ -1,122 +1,153 @@
-import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
-import { Typography, Grid, Card, CardContent, Divider, TableRow, TableCell } from '@material-ui/core';
-import { Table, TableBody } from '@material-ui/core';
+import React, { Component } from "react";
+import { Link } from "react-router-dom";
+import {
+  Typography,
+  Grid,
+  Card,
+  CardContent,
+  Divider,
+  TableRow,
+  TableCell,
+  CircularProgress
+} from "@material-ui/core";
+import { Table, TableBody } from "@material-ui/core";
 //import DinnerModel from '../data/DinnerModel'; is this in props?
 
 const styles = {
-    root: {}
+  root: {}
 };
 
 class Details extends Component {
-    constructor(props) {
-        super(props);
+  constructor(props) {
+    super(props);
 
-        //let dish = this.props.model.getDish(this.props.id);
+    this.state = {
+        dish: {},
+        numberOfGuests: this.props.model.getNumberOfGuests() /* ,
+        image: dish.image,
+        name: dish.title,
+        instr: dish.instructions,
+        ing: rows,
+        price: dish.pricePerServing */
+    };
 
-        this.state = {
-            dishId: this.props.model.getDetailedDish(),
-            numberOfGuests: this.props.model.getNumberOfGuests()/* ,
-            image: dish.image,
-            name: dish.title,
-            instr: dish.instructions,
-            ing: rows,
-            price: dish.pricePerServing */
-        };
-    }
-
-    componentDidMount() {
-        this.props.model.addObserver(this);
-    }
-
-    componentWillUnmount() {
-        this.props.model.removeObserver(this);
-    }
-
-    update() {
-        // This may be needed when we recalculate the ing. amount and price
-        //let dish = this.props.model.getDish(this.props.id);
-        this.setState({
-            numberOfGuests: this.props.model.getNumberOfGuests()
+    // if we getdish here we can have a isloading boolean that the render uses
+    this.isLoading = true;
+    this.error;
+    this.props.model
+      .getDish(this.props.model.getDetailedDish)
+      .then(dishDetailed => {
+        this.isLoading = false;
+        this.error = "";
+        this.stateSet({
+          dish: dishDetailed,
+          numberOfGuests: this.props.model.getNumberOfGuests()
         });
-        // Is it needed to call this?
-        this.render();
-    }
+      })
+      .catch(error => {
+        this.error = error;
+        this.isLoading = false;
+      });
+  }
 
-    render() {
-        let guests = this.state.numberOfGuests;
+  componentDidMount() {
+    this.props.model.addObserver(this);
+  }
 
-        // Need to make this work with api req. and async.
-        let dish = {};
+  componentWillUnmount() {
+    this.props.model.removeObserver(this);
+  }
 
-        const rows = [];
-        for (let i = 0; i < dish.extendedIngredients.length; i++) {
-            let id = i+1; // for clarity
-            let name = dish.extendedIngredients[i].name;
-            let amount = dish.extendedIngredients[i].amount;
-            let unit = dish.extendedIngredients[i].unit;
-            rows.push( { id, amount, unit, name } );
-        }
+  update() {
+    this.setState({
+      numberOfGuests: this.props.model.getNumberOfGuests()
+    });
+  }
 
-        // is it better to store data in state, even if we know that it won't change will comp. is mounted?
-        return (
-            <div>
-                <Grid container>
-                    <Grid item xs={6}>
-                        <Grid container>
-                            <Typography>{dish.title}</Typography>
-                        </Grid>
-                        <Grid container>
-                            <img src={dish.image}></img>
-                        </Grid>
-                        <Grid container>
-                            <Typography>lorem ipsum</Typography>
-                        </Grid>
-                        <Grid container>
-                            <Link to='/search'>
-                                <button>Back to search</button>
-                            </Link>
-                        </Grid>
-                        <Grid container>
-                            <Typography>Preparation</Typography>
-                        </Grid>
-                        <Grid container>
-                            <Typography>{dish.instructions}</Typography>
-                        </Grid>
+  render() {
+    if (this.isLoading) {
+      return(
+        <CircularProgress/>
+      );
+    } else if (this.error !== "") {
+      // TODO: Hanlde error
+      // Do we need to render an empty div/grid?
+    } else {
+      let guests = this.state.numberOfGuests;
+
+      let dish = this.state.dish;
+
+      const rows = [];
+      for (let i = 0; i < dish.extendedIngredients.length; i++) {
+        let id = i + 1; // for clarity
+        let name = dish.extendedIngredients[i].name;
+        let amount = dish.extendedIngredients[i].amount;
+        let unit = dish.extendedIngredients[i].unit;
+        rows.push({ id, amount, unit, name });
+      }
+
+      // is it better to store data in state, even if we know that it won't change will comp. is mounted?
+      return (
+        <div>
+          <Grid container>
+            <Grid item xs={6}>
+              <Grid container>
+                <Typography>{dish.title}</Typography>
+              </Grid>
+              <Grid container>
+                <img src={dish.image} />
+              </Grid>
+              <Grid container>
+                <Typography>lorem ipsum</Typography>
+              </Grid>
+              <Grid container>
+                <Link to="/search">
+                  <button>Back to search</button>
+                </Link>
+              </Grid>
+              <Grid container>
+                <Typography>Preparation</Typography>
+              </Grid>
+              <Grid container>
+                <Typography>{dish.instructions}</Typography>
+              </Grid>
+            </Grid>
+            <Grid item xs={6}>
+              <Card>
+                <CardContent>
+                  <Typography>Ingredients for {guests} people</Typography>
+                  <Divider variant="middle" />
+                  <Table>
+                    <TableBody>
+                      {rows.map(row => (
+                        <TableRow key={row.id}>
+                          <TableCell component="th" scope="row">
+                            {row.amount * guests} {row.unit}
+                          </TableCell>
+                          <TableCell align="right">{row.name}</TableCell>
+                        </TableRow>
+                      ))}
+                    </TableBody>
+                  </Table>
+                  <Divider variant="middle" />
+                  <Grid container>
+                    <Grid item xs={10}>
+                      <button>Add to menu</button>
                     </Grid>
-                    <Grid item xs={6}>
-                        <Card>
-                            <CardContent>
-                                <Typography>Ingredients for {guests} people</Typography>
-                                <Divider variant="middle" />
-                                    <Table>
-                                        <TableBody>
-                                            {rows.map(row => (
-                                                <TableRow key={row.id}>
-                                                    <TableCell component="th" scope="row">
-                                                        {row.amount * guests} {row.unit}
-                                                    </TableCell>
-                                                    <TableCell align="right">{row.name}</TableCell>
-                                                </TableRow>
-                                            ))}
-                                        </TableBody>
-                                    </Table>
-                                <Divider variant="middle" />
-                                <Grid container>
-                                    <Grid item xs={10}>
-                                        <button>Add to menu</button>
-                                    </Grid>
-                                    <Grid item xs={2} justify="space-between">
-                                        <Typography>Price: {guests * dish.pricePerServing}</Typography>
-                                    </Grid>
-                                </Grid>
-                            </CardContent>
-                        </Card>
+                    <Grid item xs={2} justify="space-between">
+                      <Typography>
+                        Price: {guests * dish.pricePerServing}
+                      </Typography>
                     </Grid>
-                </Grid>
-            </div>
-        ); 
+                  </Grid>
+                </CardContent>
+              </Card>
+            </Grid>
+          </Grid>
+        </div>
+      );
     }
+  }
 }
 
 export default Details;

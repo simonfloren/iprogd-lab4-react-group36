@@ -1,5 +1,5 @@
 import ObservableModel from "./ObservableModel";
-import API_KEY from "./api";
+import { API_KEY } from "./api";
 
 const BASE_URL = "http://sunset.nada.kth.se:8080/iprog/group/36";
 const httpOptions = {
@@ -30,7 +30,7 @@ class DinnerModel extends ObservableModel {
     ];
 
     // Change to -1 later
-    this._dishDetail = 78;
+    this._dishDetail = 97;
   }
 
   /**
@@ -61,8 +61,10 @@ class DinnerModel extends ObservableModel {
    * @param {number} num
    */
   setNumberOfGuests(num) {
-    this._numberOfGuests = num;
-    this.notifyObservers();
+    if (num > 0) {
+      this._numberOfGuests = num;
+      this.notifyObservers();
+    }
   }
 
   /**

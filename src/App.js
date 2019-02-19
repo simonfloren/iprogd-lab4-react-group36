@@ -5,9 +5,9 @@ import modelInstance from './data/DinnerModel';
 import SelectDish from './SelectDish/SelectDish';
 import Header from './Header/Header';
 import './App.css';
-import DishItem from './DishItem/DishItem';
+//import DishItem from './DishItem/DishItem';
 import Printout from './Printout/Printout';
-import Details from './Details/Details';
+import DishDetails from './DishDetails/DishDetails';
 
 class App extends Component {
   constructor(props) {
